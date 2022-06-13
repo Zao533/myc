@@ -1,0 +1,55 @@
+#include <stdio.h>
+#include <math.h>
+#define EPS 1E-6
+int normalization(double *data, int n);
+void input(double *data, int *n);
+void output(double *data, int n);
+ 
+int main() {
+    double *data;
+    int n;
+   
+    //Don`t forget to allocate memory !
+ 
+    input(data, &n);
+    if (normalization(data, n)) {
+        output(data, n);
+    } else {
+        printf("ERROR");
+    }
+    free (data);
+    return 0;
+}
+int normalization(double *data, int n) {
+    int result = 1;
+    double max_value = max(data, n);
+    double min_value = min(data, n);
+    double size = max_value - min_value;
+ 
+    if(fabs(size) < EPS) {
+        for (int i = 0; i < n; i++) {
+            data[i] = data[i] / size - min_value / size;
+        }
+    } else {
+        result = 0;
+    }
+    
+    return result;
+}
+ 
+void input(double * data, int *n) {
+    
+    scanf("%d", n);
+    data = (double*)malloc*(n*sizeof(double));
+    for (int i = 0; i < n; i++) {
+        printf("%lf", data);
+        
+    }
+    
+}
+void output(double * data, int n) {
+    for (int i = 0; i < n; i++) {
+        printf("%.2lf", data);
+    }
+}
+ 
